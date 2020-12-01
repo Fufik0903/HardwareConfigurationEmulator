@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище EmulatorModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Generation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NetworkInterfaceController">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="GenerationId" Type="int" />
+    <Property Name="Model" Type="nvarchar" MaxLength="30" />
+    <Property Name="TypeOfAdapter" Type="nvarchar" MaxLength="30" />
+    <Property Name="TransmissionSpeed" Type="int" />
+    <Property Name="Path" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Router">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdTypeOfRoutingTable" Type="int" />
+    <Property Name="SpeedThroughCable" Type="int" />
+    <Property Name="CanSupportDHCP" Type="bit" />
+    <Property Name="Path" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Switch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Color" Type="nvarchar" MaxLength="20" />
+    <Property Name="IdTypeOfBuffering" Type="int" />
+    <Property Name="BasicTransmissionSpeed" Type="int" />
+    <Property Name="CountOfSwitchPorts" Type="int" />
+    <Property Name="Path" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TypeOfBuffering">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="TypeOfRoutingTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="RouterId" Type="int" />
+    <Property Name="SwitchId" Type="int" />
+    <Property Name="NicId" Type="int" />
+  </EntityType>
+  <Association Name="FK_NetworkInterfaceController_Generation">
+    <End Role="Generation" Type="Self.Generation" Multiplicity="0..1" />
+    <End Role="NetworkInterfaceController" Type="Self.NetworkInterfaceController" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Generation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetworkInterfaceController">
+        <PropertyRef Name="GenerationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Router_TypeOfRoutingTable">
+    <End Role="TypeOfRoutingTable" Type="Self.TypeOfRoutingTable" Multiplicity="0..1" />
+    <End Role="Router" Type="Self.Router" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfRoutingTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Router">
+        <PropertyRef Name="IdTypeOfRoutingTable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Switch_TypeOfBuffering1">
+    <End Role="TypeOfBuffering" Type="Self.TypeOfBuffering" Multiplicity="0..1" />
+    <End Role="Switch" Type="Self.Switch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfBuffering">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Switch">
+        <PropertyRef Name="IdTypeOfBuffering" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_NetworkInterfaceController">
+    <End Role="NetworkInterfaceController" Type="Self.NetworkInterfaceController" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NetworkInterfaceController">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="NicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Router">
+    <End Role="Router" Type="Self.Router" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Router">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RouterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Switch">
+    <End Role="Switch" Type="Self.Switch" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Switch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="SwitchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище EmulatorModelContainer">
+    <EntitySet Name="Generation" EntityType="Self.Generation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NetworkInterfaceController" EntityType="Self.NetworkInterfaceController" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Router" EntityType="Self.Router" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Switch" EntityType="Self.Switch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeOfBuffering" EntityType="Self.TypeOfBuffering" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeOfRoutingTable" EntityType="Self.TypeOfRoutingTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_NetworkInterfaceController_Generation" Association="Self.FK_NetworkInterfaceController_Generation">
+      <End Role="Generation" EntitySet="Generation" />
+      <End Role="NetworkInterfaceController" EntitySet="NetworkInterfaceController" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Router_TypeOfRoutingTable" Association="Self.FK_Router_TypeOfRoutingTable">
+      <End Role="TypeOfRoutingTable" EntitySet="TypeOfRoutingTable" />
+      <End Role="Router" EntitySet="Router" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Switch_TypeOfBuffering1" Association="Self.FK_Switch_TypeOfBuffering1">
+      <End Role="TypeOfBuffering" EntitySet="TypeOfBuffering" />
+      <End Role="Switch" EntitySet="Switch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_NetworkInterfaceController" Association="Self.FK_User_NetworkInterfaceController">
+      <End Role="NetworkInterfaceController" EntitySet="NetworkInterfaceController" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Router" Association="Self.FK_User_Router">
+      <End Role="Router" EntitySet="Router" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Switch" Association="Self.FK_User_Switch">
+      <End Role="Switch" EntitySet="Switch" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

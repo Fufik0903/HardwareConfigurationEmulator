@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище EmulatorModelContainer" CdmEntityContainer="EmulatorDatabaseEntities">
+    <EntitySetMapping Name="Generation">
+      <EntityTypeMapping TypeName="EmulatorModel.Generation">
+        <MappingFragment StoreEntitySet="Generation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Router">
+      <EntityTypeMapping TypeName="EmulatorModel.Router">
+        <MappingFragment StoreEntitySet="Router">
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="IdTypeOfRoutingTable" ColumnName="IdTypeOfRoutingTable" />
+          <ScalarProperty Name="SpeedThroughCable" ColumnName="SpeedThroughCable" />
+          <ScalarProperty Name="CanSupportDHCP" ColumnName="CanSupportDHCP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Switch">
+      <EntityTypeMapping TypeName="EmulatorModel.Switch">
+        <MappingFragment StoreEntitySet="Switch">
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="IdTypeOfBuffering" ColumnName="IdTypeOfBuffering" />
+          <ScalarProperty Name="BasicTransmissionSpeed" ColumnName="BasicTransmissionSpeed" />
+          <ScalarProperty Name="CountOfSwitchPorts" ColumnName="CountOfSwitchPorts" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeOfBuffering">
+      <EntityTypeMapping TypeName="EmulatorModel.TypeOfBuffering">
+        <MappingFragment StoreEntitySet="TypeOfBuffering">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeOfRoutingTable">
+      <EntityTypeMapping TypeName="EmulatorModel.TypeOfRoutingTable">
+        <MappingFragment StoreEntitySet="TypeOfRoutingTable">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NetworkInterfaceController">
+      <EntityTypeMapping TypeName="EmulatorModel.NetworkInterfaceController">
+        <MappingFragment StoreEntitySet="NetworkInterfaceController">
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="TransmissionSpeed" ColumnName="TransmissionSpeed" />
+          <ScalarProperty Name="TypeOfAdapter" ColumnName="TypeOfAdapter" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="GenerationId" ColumnName="GenerationId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="EmulatorModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="NicId" ColumnName="NicId" />
+          <ScalarProperty Name="SwitchId" ColumnName="SwitchId" />
+          <ScalarProperty Name="RouterId" ColumnName="RouterId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

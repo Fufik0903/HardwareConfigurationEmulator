@@ -1,0 +1,53 @@
+﻿<Page x:Class="HardwareConfigurationEmulator.Pages.PageOfHardware"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HardwareConfigurationEmulator.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageOfHardware">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1,1" EndPoint="1,0">
+                <GradientStop Color="#73B9E1" Offset="0"/>
+                <GradientStop Color="#4F6DD9" Offset="0.3" />
+                <GradientStop Color="#FF1E1AD3" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Label Name="Mail" Content="{Binding Email}" Foreground="SkyBlue" FontWeight="UltraBlack" FontSize="16"/>
+        <Label Name="TitleCategory" VerticalAlignment="Bottom" Foreground="SkyBlue" FontWeight="UltraBold" HorizontalAlignment="Center" Content="Название категории" Grid.ColumnSpan="3" FontSize="30"/>
+        <DataGrid Name="MainDataGrid" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" SelectionMode="Single" Grid.ColumnSpan="3" Grid.Row="1" Margin="30,0,30,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Title}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="AddButton" Grid.Row="2" Width="100" Height="40" Click="AddButton_Click">
+            <Button.Content>
+                <TextBlock Text="Добавить" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Name="EditButton" Grid.Row="2" Grid.Column="1" Width="100" Height="40" Click="EditButton_Click">
+            <Button.Content>
+                <TextBlock Text="Изменить" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </Button.Content>
+        </Button>
+
+        <Button Name="RemoveButtom" Grid.Row="2" Grid.Column="2" Width="100" Height="40" Click="RemoveButtom_Click">
+            <Button.Content>
+                <TextBlock Text="Удалить" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </Button.Content>
+        </Button>
+    </Grid>
+</Page>

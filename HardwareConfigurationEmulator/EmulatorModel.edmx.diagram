@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eaaa4680dda54a45a268b930a4962874" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="EmulatorModel.Generation" Width="1.5" PointX="11" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmulatorModel.Router" Width="1.5" PointX="4.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmulatorModel.Switch" Width="1.5" PointX="6.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmulatorModel.TypeOfBuffering" Width="1.5" PointX="6.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmulatorModel.TypeOfRoutingTable" Width="1.5" PointX="2.125" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="EmulatorModel.FK_Router_TypeOfRoutingTable" ManuallyRouted="false" />
+        <AssociationConnector Association="EmulatorModel.FK_Switch_TypeOfBuffering" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EmulatorModel.NetworkInterfaceController" Width="1.5" PointX="8.75" PointY="4.25" />
+        <EntityTypeShape EntityType="EmulatorModel.User" Width="1.5" PointX="6.75" PointY="0.625" />
+        <AssociationConnector Association="EmulatorModel.FK_NetworkInterfaceController_Generation" />
+        <AssociationConnector Association="EmulatorModel.FK_User_NetworkInterfaceController" />
+        <AssociationConnector Association="EmulatorModel.FK_User_Router" />
+        <AssociationConnector Association="EmulatorModel.FK_User_Switch" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
